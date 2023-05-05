@@ -212,7 +212,7 @@ class ResNet(nn.Module):
     def _make_layer(self, block, plane, num_blocks, stride):
         strides = [stride] + [1]*(num_blocks - 1)   # list all stride for each layer
         layers = []
-        for i in strides:
+        for stride in strides:
             layers.append(block(self.in_plane, plane, stride))
             self.in_plane = plane * block.expansion
         return nn.Sequential(*layers)   # why we use the address of the list?
